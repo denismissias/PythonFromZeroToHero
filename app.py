@@ -25,6 +25,13 @@ def alterar(nomes):
     else:
         print nome_a_ser_alterado + " não existe na lista."
 
+def procurar_regex(nomes):
+    import re
+    print('Digite a expressão regular')
+    nomes_concatenados = ' '.join(nomes)
+    resultados = re.findall(raw_input(), nomes_concatenados)
+    print(resultados)
+
 def procurar(nomes):
     print 'Digite nome a procurar:'
     nome_a_procurar = raw_input()
@@ -39,7 +46,7 @@ def menu():
     escolha = ''
 
     while(escolha != '0'):
-        print "Digite 1 para cadastrar, 2 para listar, 3 para remover, 4 para alterar, 5 para pesquisar e 0 para terminar"
+        print "Digite 1 para cadastrar, 2 para listar, 3 para remover, 4 para alterar, 5 para pesquisar, 6 busca por REGEX e 0 para terminar"
         escolha = raw_input()
 
         if(escolha == '1'):
@@ -56,5 +63,8 @@ def menu():
 
         if(escolha == '5'):
             procurar(nomes)
+
+        if(escolha == '6'):
+            procurar_regex(nomes)
 
 menu()
