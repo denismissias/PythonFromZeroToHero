@@ -14,12 +14,32 @@ def remover(nomes):
     print 'Qual nome você gostaria de remover?'
     nomes.remove(raw_input())
 
+def alterar(nomes):
+    print 'Qual nome vc gostaria de alterar?'
+    nome_a_ser_alterado = raw_input()
+
+    if nome_a_ser_alterado in nomes:
+        print "Qual é o novo nome?"
+        index = nomes.index(nome_a_ser_alterado)
+        nomes[index] = raw_input()
+    else:
+        print nome_a_ser_alterado + " não existe na lista."
+
+def procurar(nomes):
+    print 'Digite nome a procurar:'
+    nome_a_procurar = raw_input()
+
+    if nome_a_procurar in nomes:
+        print nome_a_procurar + " existe na lista."
+    else:
+        print nome_a_procurar + " NÃO existe na lista."
+
 def menu():
     nomes = []
     escolha = ''
 
     while(escolha != '0'):
-        print "Digite 1 para cadastrar, 2 para listar, 3 para remover e 0 para terminar"
+        print "Digite 1 para cadastrar, 2 para listar, 3 para remover, 4 para alterar, 5 para pesquisar e 0 para terminar"
         escolha = raw_input()
 
         if(escolha == '1'):
@@ -30,5 +50,11 @@ def menu():
 
         if(escolha == '3'):
             remover(nomes)
+
+        if(escolha == '4'):
+            alterar(nomes)
+
+        if(escolha == '5'):
+            procurar(nomes)
 
 menu()
