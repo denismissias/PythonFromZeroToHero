@@ -4,6 +4,8 @@ class Perfil(object):
     'Classe padrão para perfis de usuários'
 
     def __init__(self, nome, telefone, empresa):
+        if (len(nome) < 3):
+            raise ArgumentoInvalidoError('Nome deve ter pelo menos 3 caracteres')
         self.nome = nome
         self.telefone = telefone
         self.empresa = empresa
@@ -24,6 +26,8 @@ class Perfil(object):
         perfis = []
         for linha in arquivo:
             valores = linha.split(',')
+            if (len(valores) is not 3):
+                raise ValueError('Uma linha no arquivo %s deve ter 3 valores' % nome_arquivo)
             perfis.append(classe(*valores))
         arquivo.close()
         return perfis
@@ -60,4 +64,11 @@ class Pessoa(object):
     def imprime(self):
         imc = float(self.peso) / (float(self.altura) * float(self.altura))
         print "Imc de %s: %f" % (self.nome, imc)
+
+class ArgumentoInvalidoError(Exception):
+    def __init__(self, mensagem):
+        self.mensagem = mensagem
+
+    def __str__(self):
+        return repr(self.mensagem)
         
